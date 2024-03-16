@@ -1,0 +1,17 @@
+import User from "../models/user.model.js";
+
+export const getUsersForSidebar = async (req, res) => {
+  try {
+    const loggedInUserId = req.user._id;
+
+    const filteredUsers = await User.find({ _id: {$ne: loggedInUserId }}).select("-password"); // in order to find all the ids we just need to remove the curly braces of find function
+                                                                                             // ex: find({})
+    res.status(200).json(filteredUsers);
+
+    
+
+  } catch (error) {
+    console.error("Error in getUserForSidebar:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
