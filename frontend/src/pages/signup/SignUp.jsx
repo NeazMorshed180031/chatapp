@@ -11,16 +11,16 @@ const SignUp = () => {
     confirmPassword: "",
     gender: "",
   });
-  const { signup} = useSignup();
+  const { loading, signup } = useSignup();
 
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender });
   };
 
-  const handlesubmit = async(e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
     console.log(inputs);
-    await signup(inputs)
+    await signup(inputs);
   };
 
   return (
@@ -100,7 +100,13 @@ const SignUp = () => {
             Already have an account?
           </Link>
           <div>
-            <button className="btn btn-block btn-sm mt-2">Sign Up</button>
+            <button className="btn btn-block btn-sm mt-2" disabled={loading}>
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
           </div>
         </form>
       </div>
