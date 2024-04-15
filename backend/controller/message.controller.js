@@ -45,7 +45,7 @@ export const sendMessage = async (req, res) => {
     //This will run in parallel
     await Promise.all([conversation.save(), newMessage.save()]);
 
-    console.log(conversation);
+    // console.log(conversation);
     res.status(201).json(newMessage);
   } catch (error) {
     console.log("Error in sendMessage controller" + error.message);
@@ -65,7 +65,7 @@ export const getMessages = async (req, res) => {
 
     const messages = converstaion.messages
 
-    console.log(converstaion)
+    // console.log(converstaion)
 
     res.status(200).json(converstaion.messages)
   } catch (error) {
